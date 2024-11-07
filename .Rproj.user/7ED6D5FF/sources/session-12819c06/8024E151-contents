@@ -1,0 +1,88 @@
+# Retirer "_Alimbe" ou "_Bgaine" de la colonne "organe"
+rect_data$organe <- rect_data$id
+rect_data$organe <- sub("_Alimbe|_Bgaine|_CEN|_NA", "", rect_data$organe)
+
+
+plt <- ggplot(data = growth_ex_plante_8) +
+  geom_rect(data = rect_data, aes(xmin = xmin, xmax = xmax, ymin = 0, ymax = 4.6, color = organ, linetype = organe), fill = NA, size = 2) +
+  geom_text_repel(data = rect_data, aes(x = xmean, y = 4.2, label = organe, color = organ), vjust = -1, hjust = 0.5, 
+                  size = 3, position = position_jitter()) +
+  geom_line(aes(x = THTcc, y = ema_growthDegre, color = organe, group = organe)) +
+  labs(x = "Thermal Time °C.d-1", y = "Elongation rate (mm.°C.d-1)",
+       title = "The graph of leaf elongation rate for plant 8-TA23 as a function of thermal time", color = "Organ", linetype = "Organ")  +
+  theme_few() + 
+  geom_rangeframe() + 
+  scale_color_manual(values = extended_light_few_colors, labels = c("Alimbe" = "Blade", "Bgaine" = "Sheath", "CEN" = "Internode", "EPI" = "Spike"), 
+                     na.translate = FALSE, 
+                     name = "Organ") + 
+  scale_linetype(name = "Organ", labels = c("BMF7", "BMF8", "BMF9", "EPI"), 
+                 values = c("solid", "dotted", "dotdash", "dashed")) +
+  coord_cartesian(ylim = c(-0.2, 5)) + 
+  scale_x_continuous(limits = c(0, 1100), breaks = seq(0, 1100, by = 100)) +
+  theme(axis.text = element_text(size = 12),
+        axis.title = element_text(size = 14),
+        legend.text = element_text(size = 12),
+        legend.position = "bottom",  # Placer la légende en bas
+        legend.box = "horizontal")  # Pour afficher la légende horizontalement
+
+print(plt)
+
+
+# ------
+  plt <- ggplot(data = growth_ex_plante_8) +
+  geom_rect(data = rect_data, aes(xmin = xmin, xmax = xmax, ymin = 0, ymax = 4.6, color = organ, linetype = organ), fill = NA, size = 2) +
+  geom_text_repel(data = rect_data, aes(x = xmean, y = 4.4, label = organ, color = organ), vjust = -1, hjust = 0.5, 
+                  size = 3, position = position_jitter()) +
+  geom_line(aes(x = THTcc, y = ema_growthDegre, color = organe, group = organe)) +
+  labs(x = "Thermal Time °C.d-1", y = "Elongation rate (mm.°C.d-1)",
+       title = "The graph of leaf elongation rate for plant 8-TA23 as a function of thermal time", color = "Organ", linetype = "Organe") +
+  theme_few() + 
+  geom_rangeframe() + 
+  scale_color_manual(values = extended_light_few_colors, labels = c("Alimbe" = "Blade", "Bgaine" = "Sheath", "CEN" = "Internode", "EPI" = "Spike"), 
+                     na.translate = FALSE, 
+                     name = "Organ") + 
+  scale_linetype_manual(name = "Organ linetype", labels = c("BMF7", "BMF8", "BMF9"), 
+                        values = c("BMF7" = "solid", "BMF8" = "dotted", "BMF9" = "dashed")) +
+  coord_cartesian(ylim = c(-0.2, 5)) + 
+  scale_x_continuous(limits = c(0, 1100), breaks = seq(0, 1100, by = 100)) +
+  theme(axis.text = element_text(size = 12),
+        axis.title = element_text(size = 14),
+        legend.text = element_text(size = 12),
+        legend.position = "bottom",  # Place the legend at the bottom
+        legend.box = "horizontal")  # Display legend horizontally
+
+print(plt)
+
+
+plt <- ggplot(data = growth_ex_plante_8) +
+  geom_rect(data = rect_data, aes(xmin = xmin, xmax = xmax, ymin = 0, ymax = 4.6, color = organ, linetype = organ), fill = NA, size = 2)+
+  geom_text_repel(data = rect_data, aes(x = xmean, y = 4.4, label = organ, color = organ), vjust = -1, hjust = 0.5, 
+                  size = 3, position = position_jitter()) +
+  geom_line(aes(x = THTcc, y = ema_growthDegre, color = organe, group = organe)) +
+  labs(x = "Thermal Time °C.d-1", y = "Elongation rate (mm.°C.d-1)",
+       title = "The graph of leaf elongation rate for plant 8-TA23 as a function of thermal time", color = "Organ", linetype = "Organe") + 
+  theme_few() + 
+  geom_rangeframe() +
+  scale_color_manual(values = extended_light_few_colors, labels = c("Alimbe" = "Blade", "Bgaine" = "Sheath", "CEN" = "Internode", "EPI" = "Spike"), 
+                     na.translate = FALSE, 
+                     name = "Organ")  +
+  scale_linetype_manual(name = "Organ linetype", labels = c("BMF7", "BMF8", "BMF9"), 
+                        values = c("BMF7" = "solid", "BMF8" = "dotted", "BMF9" = "dashed"))
+  
+  
+plt
+  
+
+
+
+### Couleurs theme_few ("light") : 
+# Extraire les couleurs de la palette "Light" de `scale_color_few`
+light_few_colors <- ggthemes::few_pal("Light")(8)
+print(light_few_colors)
+("#88BDE6" "#FBB258" "#90CD97" "#F6AAC9" "#BFA554" "#BC99C7" "#EDDD46" "#F07E6E")
+
+# Ajouter des couleurs supplémentaires si nécessaire
+additional_colors <- c("hotpink1",  "aquamarine2", "burlywood1", "#FFD700", "#87CEEB", "darkolivegreen4", "lemonchiffon3", "palevioletred1", "seagreen","goldenrod1", "darkseagreen")
+
+# Combiner les couleurs d'origine et les couleurs supplémentaires
+extended_light_few_colors <- c(light_few_colors, additional_colors)

@@ -1,0 +1,6 @@
+"0","# Source functions"
+"0","source(file=""R/functions.R"")"
+"2","Avis : impossible d'ouvrir le fichier 'R/functions.R' : No such file or directory"
+"2","Erreur dans file(filename, ""r"", encoding = encoding) : 
+  impossible d'ouvrir la connexion
+"

@@ -1,0 +1,6 @@
+"0","# Use the function in functions.R"
+"0","p1 <- create_scatterplot(data, ""Adelie"", ""6689c6"")"
+"0","p2 <- create_scatterplot(data, ""Chinstrap"", ""e85252"")"
+"0","p3 <- create_scatterplot(data, ""Gentoo"", ""9a6fb0"")"
+"0",""
+"0","p1 + p2 + p3"
